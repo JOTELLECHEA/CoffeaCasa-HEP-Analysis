@@ -2,7 +2,8 @@
 
 ## Asymmetry Analysis for the $W^{+/-}$ ratio.
 
-This project will calulate the ratio of $W^+$ vs $W^-$. This will be a decay following both $W^- \rightarrow l^- + v_l$ and $W^+ \rightarrow l^+ + \bar{v_l}$.
+This project will calulate the ratio of $W^+$ and $W^-$. The focus will be on leptonic decays from either $W^+$ and $W^-$.
+The W Bosons decay as follows (l = electron or muon): $W^- \rightarrow l^- + v_l$ and $W^+ \rightarrow l^+ + \bar{v_l}$.
 
 Steps that will take:
 
