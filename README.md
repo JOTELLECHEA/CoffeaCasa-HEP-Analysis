@@ -3,7 +3,7 @@
 ## Asymmetry Analysis for the $W^{+/-}$ ratio.
 
 This project will calulate the ratio of $W^+$ and $W^-$. The focus will be on leptonic decays from either $W^+$ and $W^-$.
-The W Bosons decay as follows (l = electron or muon): $W^- \rightarrow l^- + v_l$ and $W^+ \rightarrow l^+ + \bar{v}_l$
+The W Bosons decay as follows (l = electron or muon): $W^- \rightarrow l^-v$ and $W^+ \rightarrow l^+\bar{v}$
 
 Steps that will take:
 
@@ -12,11 +12,11 @@ Steps that will take:
 3. Calculate the invariant mass of $W^{+/-}$.
 4. Calculate the ratios of $W^{+/-}$.
 
-## Feynman Diagrams 
+## Feynman Diagrams (electron) 
 
-### $W^+$
+### $W^+ \rightarrow e^+\bar{v}_e$
 <img src="https://github.com/JOTELLECHEA/CoffeaCasa-HEP-Analysis/blob/main/Pictures/wplus.jpg" alt="wplus" width="300"/>
 
-### $W^-$
+### $W^- \rightarrow e^-v_e$
 <img src="https://github.com/JOTELLECHEA/CoffeaCasa-HEP-Analysis/blob/main/Pictures/wminus.jpg" alt="wminus" width="300"/>
 
