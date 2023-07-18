@@ -59,7 +59,7 @@ def cmsPlot(H):
     hep.histplot(H,label='$M_{ee}$',histtype='fill')
     # hep.cms.label(rlabel="pT > 20 GeV/C")
     plt.tight_layout()
-    stats = addStats(h1)
+    stats = addStats(H)
     plt.text(0.77, 0.90, stats, ha='left', va='top', transform=ax.transAxes, fontsize = 15, bbox = dict(alpha = 0.15))
     # plt.savefig('InvariantMassPlot.jpg')
     plt.show()
