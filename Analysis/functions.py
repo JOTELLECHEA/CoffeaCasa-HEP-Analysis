@@ -10,8 +10,8 @@ def ChargeOrdering(LEPTON):
     index = ak.argsort(LEPTON.charge)
     return LEPTON[index]
 
-def LeptonSelection(DATA, PT, ETA, FLAVOR):
-    ''' Event selection: electron antielectron pair, electron.pt > PT, electron.eta > ETA,
+def LeptonSelectionForZBoson(DATA, PT, ETA, FLAVOR):
+    ''' Event selection for Z Boson canidates: electron antielectron pair, electron.pt > PT, electron.eta > ETA,
     ensures charge conservation and allows for 2 or 4 lepton pairs. '''
     if FLAVOR == 'Electron': x = DATA.Electron
     elif FLAVOR == 'Muon': x = DATA.Muon
@@ -24,10 +24,13 @@ def LeptonSelection(DATA, PT, ETA, FLAVOR):
     return x[mask]
 
 def TwoLeptonIM(LEPTON):
+    ''' Calculates Invariant Mass: Sum of two lorentz vector and then calculates the new vector's mass. '''
     twoLepVec = LEPTON[:,0].add(LEPTON[:,1])
     return twoLepVec.mass
 
 def FourLeptonIM(LEPTON):
+    ''' Calculates Invariant Mass: Sum of two lorentz vector and then calculates the new vector's mass.
+     This is done for all possible combination of 4 leptons and a list of the mass is return. ''' 
     MASS = []
     for i in range(2):
         for j in range(2):
@@ -35,6 +38,8 @@ def FourLeptonIM(LEPTON):
     return MASS
 
 def InvariantMassHist(LEPTON, BINS):
+    ''' Creates a Histogram that ranges from 0 to 180 GeV. Event selection that makes sure that 2and 4 lepton events are used.
+    Then fills the histogram. '''
     h = hist.Hist(hist.axis.Regular(BINS, 0, 180, name='Invariant Mass[GeV/C^2]'))
     mask_2l = ak.num(LEPTON, axis=-1) == 2
     mask_4l = ak.num(LEPTON, axis=-1) == 4
@@ -46,6 +51,7 @@ def InvariantMassHist(LEPTON, BINS):
     return h 
 
 def addStats(H):
+    ''' This adds a Statistics box for the histogram that is passed. It shows count, mean, and STD. '''
     stats = (np.atleast_1d(H.profile(axis=0).view())[0])
     count , mean , sumDeltaSquared = int(stats['count']), stats['value'], stats['_sum_of_deltas_squared']
     std = np.sqrt(sumDeltaSquared/count)
@@ -53,6 +59,7 @@ def addStats(H):
     return statbox
 
 def cmsPlot(H):
+    ''' Plots histogram and decorates the plot for presentaio. '''
     fig, ax = plt.subplots(figsize=(10,5))
     ax.set_ylabel('Events', fontsize=24)
     ax.set_xlabel('$[GeV/C^{2}$]', fontsize=15)
