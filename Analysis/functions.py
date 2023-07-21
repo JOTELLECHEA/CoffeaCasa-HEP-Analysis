@@ -24,14 +24,13 @@ def LeptonSelectionForZBoson(DATA, PT, ETA, FLAVOR):
     return x[mask]
 
 def LeptonSelectionForWBoson(DATA, PT, ETA, FLAVOR, CHARGE):
-    ''' Event selection for W Boson canidates: lepton antilepton pair, lepton.pt > PT, lepton.eta > ETA and only 1 lepton. '''
-    if FLAVOR == 'Electron': x = DATA.Electron
-    elif FLAVOR == 'Muon': x = DATA.Muon
-    mask_pT_eta = ak.all(x.pt > PT, axis=-1) & ak.all(x.eta > ETA, axis=-1)
+    ''' Event selection for W Boson canidates: lepton antilepton pair, lepton.pt > PT, lepton.eta > ETA and only 1 lepton.'''
+    x = DATA
+    mask_pT_eta = ak.all(x[FLAVOR].pt > PT, axis=-1) & ak.all(x[FLAVOR].eta > ETA, axis=-1)
     x = x[mask_pT_eta]
-    mask_lepCount = ak.num(x, axis=-1) == 1
+    mask_lepCount = ak.num(x[FLAVOR], axis=-1) == 1
     x = x[mask_lepCount]
-    mask_charge = ak.all(x.charge == CHARGE, axis=-1)
+    mask_charge = ak.all(x[FLAVOR].charge == CHARGE, axis=-1)
     return x[mask_charge]
 
 def TwoLeptonIM(LEPTON):
@@ -49,8 +48,7 @@ def FourLeptonIM(LEPTON):
     return MASS
 
 def InvariantMassHist(LEPTON, BINS):
-    ''' Creates a Histogram that ranges from 0 to 180 GeV. Event selection that makes sure that 2and 4 lepton events are used.
-    Then fills the histogram. '''
+    ''' Creates a Histogram that ranges from 0 to 180 GeV. Event selection that makes sure that 2and 4 lepton events are         used.Then fills the histogram. '''
     h = hist.Hist(hist.axis.Regular(BINS, 0, 180, name='Invariant Mass[GeV/C^2]'))
     mask_2l = ak.num(LEPTON, axis=-1) == 2
     mask_4l = ak.num(LEPTON, axis=-1) == 4
