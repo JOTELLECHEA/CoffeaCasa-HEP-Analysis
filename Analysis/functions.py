@@ -23,17 +23,16 @@ def LeptonSelectionForZBoson(DATA, PT, ETA, FLAVOR):
     mask = mask_charge & (mask_2e | mask_4e)
     return x[mask]
 
-# def LeptonSelectionForWBoson(DATA, PT, ETA, FLAVOR, CHARGE):
-#     ''' Event selection for W Boson canidates: lepton antilepton pair, lepton.pt > PT, lepton.eta > ETA and only 1 lepton. '''
-#     if FLAVOR == 'Electron': x = DATA.Electron
-#     elif FLAVOR == 'Muon': x = DATA.Muon
-#     mask_pT_eta = ak.all(x.pt > PT, axis=-1) & ak.all(x.eta > ETA, axis=-1)
-#     x = x[mask_pT_eta]
-#     mask_lepCount = ak.num(x, axis=-1) == 1
-#     x = x[mask_lepCount]
-#     mask_charge = ak.sum(x.charge, axis=-1) == 0
-#     mask = mask_charge & mask_lepCount
-#     return x[mask]
+def LeptonSelectionForWBoson(DATA, PT, ETA, FLAVOR, CHARGE):
+    ''' Event selection for W Boson canidates: lepton antilepton pair, lepton.pt > PT, lepton.eta > ETA and only 1 lepton. '''
+    if FLAVOR == 'Electron': x = DATA.Electron
+    elif FLAVOR == 'Muon': x = DATA.Muon
+    mask_pT_eta = ak.all(x.pt > PT, axis=-1) & ak.all(x.eta > ETA, axis=-1)
+    x = x[mask_pT_eta]
+    mask_lepCount = ak.num(x, axis=-1) == 1
+    x = x[mask_lepCount]
+    mask_charge = ak.all(x.charge == CHARGE, axis=-1)
+    return x[mask_charge]
 
 def TwoLeptonIM(LEPTON):
     ''' Calculates Invariant Mass: Sum of two lorentz vector and then calculates the new vector's mass. '''
