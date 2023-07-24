@@ -5,21 +5,20 @@ import numpy as np
 import uproot
 import hist
 
-def ChargeOrdering(LEPTON):
+def ChargeOrdering(DATA, FLAVOR):
     ''' Sort charge from each event negative first then postive. '''
-    index = ak.argsort(LEPTON.charge)
-    return LEPTON[index]
+    index = ak.argsort(DATA[FLAVOR].charge)
+    return DATA[FLAVOR][index]
 
 def LeptonSelectionForZBoson(DATA, PT, ETA, FLAVOR):
     ''' Event selection for Z Boson canidates: lepton antilepton pair, lepton.pt > PT, lepton.eta > ETA,
     ensures charge conservation and allows for 2 or 4 lepton pairs. '''
-    if FLAVOR == 'Electron': x = DATA.Electron
-    elif FLAVOR == 'Muon': x = DATA.Muon
-    mask_pT_eta = ak.all(x.pt > PT, axis=-1) & ak.all(x.eta > ETA, axis=-1)
+    x = DATA
+    mask_pT_eta = ak.all(x[FLAVOR].pt > PT, axis=-1) & ak.all(x[FLAVOR].eta > ETA, axis=-1)
     x = x[mask_pT_eta]
-    mask_charge = ak.sum(x.charge, axis=-1) == 0
-    mask_2e = ak.num(x, axis=-1) == 2
-    mask_4e = ak.num(x, axis=-1) == 4
+    mask_charge = ak.sum(x[FLAVOR].charge, axis=-1) == 0
+    mask_2e = ak.num(x[FLAVOR], axis=-1) == 2
+    mask_4e = ak.num(x[FLAVOR], axis=-1) == 4
     mask = mask_charge & (mask_2e | mask_4e)
     return x[mask]
 
