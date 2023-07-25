@@ -1,3 +1,4 @@
 *.ipynb_checkpoints
 *.DS_Store
 *.html
+Analysis/__pycache__/
