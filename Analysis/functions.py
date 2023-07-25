@@ -46,7 +46,21 @@ def FourLeptonIM(LEPTON):
             MASS.append((LEPTON[:,i].add(LEPTON[:,j+2])).mass)
     return MASS
 
-def InvariantMassHist(LEPTON, BINS):
+def LeptonMetIM(DATA):
+    ''' Calculates Invariant Mass: Sum of two lorentz vector and then calculates the new vector's mass. '''
+    electron = DATA.Electron
+    neutrino = DATA.MET
+    mt = np.sqrt(2*electron.pt[:,0]*neutrino.pt[:]*(1-np.cos(electron.phi[:,0]-neutrino.phi[:])))
+    mt =ak.flatten(mt,axis=-1)
+    return mt
+
+def WInvariantMassHist(DATA, BINS):
+    ''' Creates a Histogram that ranges from 0 to 180 GeV. Event selection that makes sure that 2and 4 lepton events are         used.Then fills the histogram. '''
+    h = hist.Hist(hist.axis.Regular(BINS, 0, 180, name='Invariant Mass[GeV/C^2]'))
+    h.fill(LeptonMetIM(DATA))
+    return h 
+
+def ZInvariantMassHist(LEPTON, BINS):
     ''' Creates a Histogram that ranges from 0 to 180 GeV. Event selection that makes sure that 2and 4 lepton events are         used.Then fills the histogram. '''
     h = hist.Hist(hist.axis.Regular(BINS, 0, 180, name='Invariant Mass[GeV/C^2]'))
     mask_2l = ak.num(LEPTON, axis=-1) == 2
@@ -66,7 +80,7 @@ def addStats(H):
     statbox = f'{"Entries":<{10}}{count:d}' + '\n' + f'{"Mean":<{10}}{mean:.3f}' + '\n' + f'{"Std Dev":<{10}}{std:.3f}'
     return statbox
 
-def cmsPlot(H):
+def cmsZPlot(H):
     ''' Plots histogram and decorates the plot for presentaio. '''
     fig, ax = plt.subplots(figsize=(10,5))
     ax.set_ylabel('Events', fontsize=24)
@@ -76,5 +90,18 @@ def cmsPlot(H):
     plt.tight_layout()
     stats = addStats(H)
     plt.text(0.77, 0.90, stats, ha='left', va='top', transform=ax.transAxes, fontsize = 15, bbox = dict(alpha = 0.15))
-    # plt.savefig('InvariantMassPlot.jpg')
+    plt.savefig('InvariantMassPlotZ.jpg')
+    plt.show()
+    
+def cmsWPlot(H,FLAVOR):
+    ''' Plots histogram and decorates the plot for presentaio. '''
+    fig, ax = plt.subplots(figsize=(10,5))
+    ax.set_ylabel('Events', fontsize=24)
+    ax.set_xlabel('$[GeV/C^{2}$]', fontsize=15)
+    hep.histplot(H,label='$M_{ee}$',histtype='fill')
+    # hep.cms.label(rlabel="pT > 20 GeV/C")
+    plt.tight_layout()
+    stats = addStats(H)
+    plt.text(0.77, 0.90, stats, ha='left', va='top', transform=ax.transAxes, fontsize = 15, bbox = dict(alpha = 0.15))
+    plt.savefig('TransverseMassPlot'+FLAVOR+'.jpg')
     plt.show()
