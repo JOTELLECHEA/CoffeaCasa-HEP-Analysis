@@ -99,7 +99,7 @@ def cmsZPlot(H):
     plt.savefig('InvariantMassPlotZ.jpg')
     plt.show()
     
-def cmsWPlot(H,FLAVOR,LABEL):
+def cmsWPlot(H,SAVEFIG,LABEL):
     ''' Plots histogram and decorates the plot for presentaio. '''
     fig, ax = plt.subplots(figsize=(10,5))
     ax.set_ylabel('Events', fontsize=24)
@@ -111,5 +111,5 @@ def cmsWPlot(H,FLAVOR,LABEL):
     stats = addStats(H)
     plt.text(0.84, 0.90, label, ha='left', va='top', transform=ax.transAxes, fontsize = 16)
     plt.text(0.77, 0.90, stats, ha='left', va='top', transform=ax.transAxes, fontsize = 15, bbox = dict(alpha = 0.15))
-    plt.savefig('TransverseMassPlot'+FLAVOR+'.jpg')
+    plt.savefig(SAVEFIG)
     plt.show()
