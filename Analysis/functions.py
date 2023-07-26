@@ -5,6 +5,12 @@ import numpy as np
 import uproot
 import hist
 
+##########################
+class Format:
+    end = '\033[0m'
+    underline = '\033[4m'
+##########################
+
 def ChargeOrdering(DATA, FLAVOR):
     ''' Sort charge from each event negative first then postive. '''
     index = ak.argsort(DATA[FLAVOR].charge)
@@ -14,7 +20,7 @@ def LeptonSelectionForZBoson(DATA, PT, ETA, FLAVOR):
     ''' Event selection for Z Boson canidates: lepton antilepton pair, lepton.pt > PT, lepton.eta > ETA,
     ensures charge conservation and allows for 2 or 4 lepton pairs. '''
     x = DATA
-    mask_pT_eta = ak.all(x[FLAVOR].pt > PT, axis=-1) & ak.all(x[FLAVOR].eta > ETA, axis=-1)
+    mask_pT_eta = ak.all(x[FLAVOR].pt > PT, axis=-1) & ak.all(np.abs(x[FLAVOR].eta) < ETA, axis=-1)
     x = x[mask_pT_eta]
     mask_charge = ak.sum(x[FLAVOR].charge, axis=-1) == 0
     mask_2e = ak.num(x[FLAVOR], axis=-1) == 2
@@ -25,7 +31,7 @@ def LeptonSelectionForZBoson(DATA, PT, ETA, FLAVOR):
 def LeptonSelectionForWBoson(DATA, PT, ETA, FLAVOR, CHARGE):
     ''' Event selection for W Boson canidates: lepton antilepton pair, lepton.pt > PT, lepton.eta > ETA and only 1 lepton.'''
     x = DATA
-    mask_pT_eta = ak.all(x[FLAVOR].pt > PT, axis=-1) & ak.all(x[FLAVOR].eta > ETA, axis=-1)
+    mask_pT_eta = ak.all(x[FLAVOR].pt > PT, axis=-1) & ak.all(np.abs(x[FLAVOR].eta) < ETA, axis=-1)
     x = x[mask_pT_eta]
     mask_lepCount = ak.num(x[FLAVOR], axis=-1) == 1
     x = x[mask_lepCount]
@@ -77,7 +83,7 @@ def addStats(H):
     stats = (np.atleast_1d(H.profile(axis=0).view())[0])
     count , mean , sumDeltaSquared = int(stats['count']), stats['value'], stats['_sum_of_deltas_squared']
     std = np.sqrt(sumDeltaSquared/count)
-    statbox = f'{"Entries":<{10}}{count:d}' + '\n' + f'{"Mean":<{10}}{mean:.3f}' + '\n' + f'{"Std Dev":<{10}}{std:.3f}'
+    statbox = '\n' +f'{"Entries":<{10}}{count:d}' + '\n' + f'{"Mean":<{10}}{mean:.3f}' + '\n' + f'{"Std Dev":<{10}}{std:.3f}'
     return statbox
 
 def cmsZPlot(H):
@@ -85,23 +91,25 @@ def cmsZPlot(H):
     fig, ax = plt.subplots(figsize=(10,5))
     ax.set_ylabel('Events', fontsize=24)
     ax.set_xlabel('$[GeV/C^{2}$]', fontsize=15)
-    hep.histplot(H,label='$M_{ee}$',histtype='fill')
-    # hep.cms.label(rlabel="pT > 20 GeV/C")
+    hep.histplot(H,histtype='fill')
+    hep.cms.label(rlabel="pT > 25 GeV/C and |$\eta$| < 2.4")
     plt.tight_layout()
     stats = addStats(H)
     plt.text(0.77, 0.90, stats, ha='left', va='top', transform=ax.transAxes, fontsize = 15, bbox = dict(alpha = 0.15))
     plt.savefig('InvariantMassPlotZ.jpg')
     plt.show()
     
-def cmsWPlot(H,FLAVOR):
+def cmsWPlot(H,FLAVOR,LABEL):
     ''' Plots histogram and decorates the plot for presentaio. '''
     fig, ax = plt.subplots(figsize=(10,5))
     ax.set_ylabel('Events', fontsize=24)
     ax.set_xlabel('$[GeV/C^{2}$]', fontsize=15)
-    hep.histplot(H,label='$M_{ee}$',histtype='fill')
-    # hep.cms.label(rlabel="pT > 20 GeV/C")
+    hep.histplot(H,histtype='fill')
+    hep.cms.label(rlabel="pT > 25 GeV/C and |$\eta$| < 2.4")
     plt.tight_layout()
+    label=LABEL
     stats = addStats(H)
+    plt.text(0.84, 0.90, label, ha='left', va='top', transform=ax.transAxes, fontsize = 16)
     plt.text(0.77, 0.90, stats, ha='left', va='top', transform=ax.transAxes, fontsize = 15, bbox = dict(alpha = 0.15))
     plt.savefig('TransverseMassPlot'+FLAVOR+'.jpg')
     plt.show()
