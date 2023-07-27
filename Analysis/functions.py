@@ -5,12 +5,6 @@ import numpy as np
 import uproot
 import hist
 
-##########################
-class Format:
-    end = '\033[0m'
-    underline = '\033[4m'
-##########################
-
 def ChargeOrdering(DATA, FLAVOR):
     ''' Sort charge from each event negative first then postive. '''
     index = ak.argsort(DATA[FLAVOR].charge)
@@ -61,13 +55,13 @@ def LeptonMetIM(DATA):
     return mt
 
 def WInvariantMassHist(DATA, BINS):
-    ''' Creates a Histogram that ranges from 0 to 180 GeV. Event selection that makes sure that 2and 4 lepton events are         used.Then fills the histogram. '''
+    ''' Creates a Histogram that ranges from 0 to 180 GeV. Event selection that makes sure that 2and 4 lepton events are used.Then fills the histogram. '''
     h = hist.Hist(hist.axis.Regular(BINS, 0, 180, name='Invariant Mass[GeV/C^2]'))
     h.fill(LeptonMetIM(DATA))
     return h 
 
 def ZInvariantMassHist(LEPTON, BINS):
-    ''' Creates a Histogram that ranges from 0 to 180 GeV. Event selection that makes sure that 2and 4 lepton events are         used.Then fills the histogram. '''
+    ''' Creates a Histogram that ranges from 0 to 180 GeV. Event selection that makes sure that 2and 4 lepton events are used.Then fills the histogram. '''
     h = hist.Hist(hist.axis.Regular(BINS, 0, 180, name='Invariant Mass[GeV/C^2]'))
     mask_2l = ak.num(LEPTON, axis=-1) == 2
     mask_4l = ak.num(LEPTON, axis=-1) == 4
@@ -111,5 +105,22 @@ def cmsWPlot(H,SAVEFIG,LABEL):
     stats = addStats(H)
     plt.text(0.84, 0.90, label, ha='left', va='top', transform=ax.transAxes, fontsize = 16)
     plt.text(0.77, 0.90, stats, ha='left', va='top', transform=ax.transAxes, fontsize = 15, bbox = dict(alpha = 0.15))
+    plt.savefig(SAVEFIG)
+    plt.show()
+
+def WpTMissingHist(H, G, SAVEFIG):
+    ''' Creates a Histogram of missing pT from met.'''
+    fig, ax = plt.subplots(figsize=(10,5))
+    ax.set_ylabel('Events', fontsize=24)
+    ax.set_xlabel('$[GeV/C$]', fontsize=15)
+    hep.histplot(H,histtype='fill',label='All events ')
+    hep.histplot(G,histtype='fill',label='Cut selection')
+    hep.cms.label(rlabel="pT > 25 GeV/C and |$\eta$| < 2.4")
+    plt.tight_layout()
+    label='$p_T^{miss}$'
+    stats = addStats(G)
+    plt.text(0.84, 0.90, label, ha='left', va='top', transform=ax.transAxes, fontsize = 12)
+    plt.text(0.77, 0.90, stats, ha='left', va='top', transform=ax.transAxes, fontsize = 12, bbox = dict(alpha = 0.15))
+    plt.legend(loc='center right',fontsize=15)
     plt.savefig(SAVEFIG)
     plt.show()
