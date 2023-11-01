@@ -1,6 +1,6 @@
 <img src="https://github.com/JOTELLECHEA/CoffeaCasa-HEP-Analysis/blob/main/title.png" width="100%">
 
-The "W Charge Asymmetry Analysis" project is a comprehensive exploration into the intriguing world of charge asymmetry in the decays of W bosons. W bosons, known for their pivotal role in electroweak interactions, can decay into charged leptons and neutrinos, resulting in W+ and W- bosons with differing charge properties. This analysis focuses on understanding and quantifying the charge asymmetry in the leptonic decays of W+ and W- bosons.
+The "W Charge Asymmetry Analysis" project is a comprehensive exploration into the intriguing world of charge asymmetry in the decays of W bosons. W bosons, known for their pivotal role in electroweak interactions, can decay into charged leptons and neutrinos, resulting in W+ and W- bosons with differing charge properties. This analysis focuses on understanding and quantifying the charge asymmetry in the leptonic decays of W+ and W- bosons via cross section ratio.
 
 ## Objectives
 
