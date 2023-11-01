@@ -17,13 +17,18 @@ The "W Charge Asymmetry Analysis" project is a comprehensive exploration into th
 
 <img src="https://github.com/JOTELLECHEA/CoffeaCasa-HEP-Analysis/blob/main/Pictures/feynman.gif">
 
-## How to use Analysis notebook
+## How to Use the Analysis Notebook
 
-1. Need to have access to https://coffea-opendata.casa/
-2. ``` git clone https://github.com/JOTELLECHEA/CoffeaCasa-HEP-Analysis.git ```
-3.  ```cd /CoffeaCasa-HEP-Analysis/Analysis ```
-4. Open the Jupyter notebook to run the analysis.
-5. The ```functions.py``` file has all the functions needed to run the analysis. 
+To use the analysis notebook for the "W Charge Asymmetry Analysis," follow these steps:
+
+1. **Access CMS OpenData**: Ensure that you have access to the CMS OpenData platform, which hosts the data required for this analysis. You can access it at [Coffea OpenData](https://coffea-opendata.casa/).
+
+2. **Clone the Repository**: Open your terminal or command prompt and run the following command to clone the analysis repository to your local machine:
+
+   ```bash
+   git clone https://github.com/JOTELLECHEA/CoffeaCasa-HEP-Analysis.git
+   
+   cd /CoffeaCasa-HEP-Analysis/Analysis
 
 ## Data Source 
  
