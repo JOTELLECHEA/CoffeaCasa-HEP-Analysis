@@ -29,9 +29,12 @@ To use the analysis notebook for the "W Charge Asymmetry Analysis," follow these
    git clone https://github.com/JOTELLECHEA/CoffeaCasa-HEP-Analysis.git
    
    cd /CoffeaCasa-HEP-Analysis/Analysis
+   ```
 
-## Data Source 
- 
+## Data Source
+```bash
+root://eospublic.cern.ch//eos/opendata/cms/derived-data/AOD2NanoAODOutreachTool/ForHiggsTo4Leptons/Run2012B_DoubleElectron.root
+```
 ## References
 
 ## Examples
