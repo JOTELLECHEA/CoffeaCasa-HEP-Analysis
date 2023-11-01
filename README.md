@@ -1,14 +1,17 @@
 <img src="https://github.com/JOTELLECHEA/CoffeaCasa-HEP-Analysis/blob/main/title.png" width="100%">
 
-This project will calulate the ratio of $W^+$ and $W^-$. The focus will be on leptonic decays from either $W^+$ and $W^-$.
-The W Bosons decay as follows (l = electron or muon): $W^- \rightarrow l^-v$ and $W^+ \rightarrow l^+\bar{v}$
+The "W Charge Asymmetry Analysis" project is a comprehensive exploration into the intriguing world of charge asymmetry in the decays of W bosons. W bosons, known for their pivotal role in electroweak interactions, can decay into charged leptons and neutrinos, resulting in W+ and W- bosons with differing charge properties. This analysis focuses on understanding and quantifying the charge asymmetry in the leptonic decays of W+ and W- bosons.
 
-Steps that will take:
+## Objectives
 
-1. Calculating the Z Boson Invariant mass. (This is to enusre we are accesing the data correctly).
-2. Find a data set on CMS Opendata for $W^{+/-}$ canidates.
-3. Calculate the invariant mass of $W^{+/-}$.
-4. Calculate the ratios of $W^{+/-}$.
+1. **Data Set Acquisition**: Find a suitable dataset on CMS OpenData that contains information about $W^{+/-}$ candidates.
+
+2. **Data Validation**: Calculate the Z Boson Invariant mass as an initial step to validate the accuracy of the data and ensure that it is accessed correctly.
+
+3. **Invariant Mass Computation**: Calculate the invariant mass of $W^{+/-}$ bosons, a fundamental quantity in particle physics analysis, to understand their properties and characteristics.
+
+4. **Charge Asymmetry Analysis**: Determine the charge asymmetry ratios between $W^{+}$ and $W^{-}$ boson decays, with a focus on leptonic decays involving charged leptons and neutrinos.
+
 
 ## Feynman Diagrams (electron) 
 
