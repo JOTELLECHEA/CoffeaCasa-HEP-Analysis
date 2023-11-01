@@ -1,6 +1,5 @@
 # CoffeaCasa-HEP-Analysis
-
-## W Charge Asymmetry Analysis.
+<img src="https://github.com/JOTELLECHEA/CoffeaCasa-HEP-Analysis/blob/main/title.png" width="100%">
 
 This project will calulate the ratio of $W^+$ and $W^-$. The focus will be on leptonic decays from either $W^+$ and $W^-$.
 The W Bosons decay as follows (l = electron or muon): $W^- \rightarrow l^-v$ and $W^+ \rightarrow l^+\bar{v}$
