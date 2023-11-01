@@ -1,4 +1,3 @@
-# CoffeaCasa-HEP-Analysis
 <img src="https://github.com/JOTELLECHEA/CoffeaCasa-HEP-Analysis/blob/main/title.png" width="100%">
 
 This project will calulate the ratio of $W^+$ and $W^-$. The focus will be on leptonic decays from either $W^+$ and $W^-$.
