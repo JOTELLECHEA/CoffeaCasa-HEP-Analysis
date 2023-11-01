@@ -15,7 +15,7 @@ The "W Charge Asymmetry Analysis" project is a comprehensive exploration into th
 
 ## Feynman Diagrams (electron) 
 
-<img src="https://github.com/JOTELLECHEA/CoffeaCasa-HEP-Analysis/blob/main/feynman.gif">
+<img src="https://github.com/JOTELLECHEA/CoffeaCasa-HEP-Analysis/blob/main/Pictures/feynman.gif">
 
 ## How to use Analysis notebook
 
