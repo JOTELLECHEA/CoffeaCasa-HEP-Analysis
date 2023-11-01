@@ -24,3 +24,9 @@ The "W Charge Asymmetry Analysis" project is a comprehensive exploration into th
 3.  ```cd /CoffeaCasa-HEP-Analysis/Analysis ```
 4. Open the Jupyter notebook to run the analysis.
 5. The ```functions.py``` file has all the functions needed to run the analysis. 
+
+## Data Source 
+ 
+## References
+
+## Examples
