@@ -15,11 +15,7 @@ The "W Charge Asymmetry Analysis" project is a comprehensive exploration into th
 
 ## Feynman Diagrams (electron) 
 
-### $W^+ \rightarrow e^+\bar{v}_e$
-<img src="https://github.com/JOTELLECHEA/CoffeaCasa-HEP-Analysis/blob/main/Pictures/wplus.jpg" alt="wplus" width="300"/>
-
-### $W^- \rightarrow e^-v_e$
-<img src="https://github.com/JOTELLECHEA/CoffeaCasa-HEP-Analysis/blob/main/Pictures/wminus.jpg" alt="wminus" width="300"/>
+<img src="https://github.com/JOTELLECHEA/CoffeaCasa-HEP-Analysis/blob/main/feynman.gif">
 
 ## How to use Analysis notebook
 
